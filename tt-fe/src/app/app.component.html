@@ -1,6 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button aria-label="Example icon-button with menu icon">
+    <button mat-icon-button
+            aria-label="Example icon-button with menu icon"
+            (click)="sidenavTrigger()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>{{ title }}</span>
@@ -13,3 +15,13 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
+<mat-sidenav-container class="sidenav-height" autosize>
+  <mat-sidenav mode="over" [(opened)]="sidenavOpened">
+    <mat-nav-list>
+      <mat-list-item>
+        PLACEHOLDER
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <h1>DASHBOARD PLACEHOLDER</h1>
+</mat-sidenav-container>
