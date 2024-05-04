@@ -1,3 +1,7 @@
+#router-container {
+    margin: 2em;
+}
+
 .sidenav-height {
     height: calc(100vh - 4.6em);
 }
