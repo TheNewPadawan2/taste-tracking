@@ -27,7 +27,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>${plugin.maven.clean.version}</version>
+				<version>${plugin.maven-clean.version}</version>
 				<configuration>
 					<filesets>
 						<fileset>
@@ -257,4 +257,3 @@
 		</profile>
 	</profiles>
 </project>
-         

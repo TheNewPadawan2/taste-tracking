@@ -1,0 +1,22 @@
+application:
+  title: TasteTracking login module
+  version: 1.0.0-SNAPSHOT
+logging:
+  level:
+    it:
+      uniecampus:
+        lfulgione:
+          tastetracking:
+            ttbe:
+              login: DEBUG
+    org:
+      springframework: INFO
+server:
+  port: 8081
+#TODO: spring:
+  #TODO: datasource:
+    #TODO: name: ${TASTETRACKING_LOGIN_DB_NAME}
+    #TODO: password: ${TASTETRACKING_LOGIN_DB_PASSWORD}
+    #TODO: url: jdbc:mysql://${TASTETRACKING_LOGIN_DB_ADDRESS}:${TASTETRACKING_LOGIN_DB_PORT}/${TASTETRACKING_LOGIN_DB_NAME}
+    #TODO: username: ${TASTETRACKING_LOGIN_DB_USERNAME}
+    #TODO: driver-class-name: org.mysql.jdbc.Driver
