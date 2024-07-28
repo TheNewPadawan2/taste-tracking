@@ -22,6 +22,7 @@
 
     <properties>
         <springboot.version>3.3.0</springboot.version>
+        <spring-security.version>6.3.0</spring-security.version>
         <lombok.version>1.18.32</lombok.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <plugin.lombok-mapstruct.version>0.2.0</plugin.lombok-mapstruct.version>
