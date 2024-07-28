@@ -35,7 +35,7 @@ public class PasswordServiceImpl implements PasswordService {
         boolean matches = passwordEncoder.matches(
                 rawPassword + pepper,
                 encodedPassword);
-        log.debug("password {} " + (matches ? "" : "doesn't ") + "match" + (matches ? "es" : "") + " with {}",
+        log.debug("password {} " + (matches ? "matches" : "doesn't match") + " with {}",
                 rawPassword,
                 encodedPassword);
         return matches;

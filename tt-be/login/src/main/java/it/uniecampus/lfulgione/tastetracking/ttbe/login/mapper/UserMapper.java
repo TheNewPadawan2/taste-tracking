@@ -1,5 +1,6 @@
 package it.uniecampus.lfulgione.tastetracking.ttbe.login.mapper;
 
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.LoginResponseDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.SignupRequestDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.entity.UserEntity;
 import org.mapstruct.Mapper;
@@ -13,4 +14,6 @@ public interface UserMapper {
 
     @Mapping(source = "tax", target = "taxId")
     SignupRequestDTO dto(UserEntity entity);
+
+    LoginResponseDTO loginResponseDTO(UserEntity entity);
 }

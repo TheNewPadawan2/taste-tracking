@@ -3,13 +3,19 @@ package it.uniecampus.lfulgione.tastetracking.ttbe.login.service.impl;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.LoginRequestDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.LoginResponseDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.SignupRequestDTO;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.entity.UserEntity;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.exception.EmailNotFoundException;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.exception.PasswordNotMatchesException;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.mapper.UserMapper;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.repository.UserRepository;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.LoginService;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.PasswordService;
+import jakarta.validation.constraints.Email;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -38,8 +44,18 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
-        //TODO
-        throw new RuntimeException("Not implemented yet");
+    public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) throws EmailNotFoundException, PasswordNotMatchesException {
+        Optional<UserEntity> userOpt = userRepository.findByEmail(loginRequestDTO.getEmail());
+        if (userOpt.isEmpty()) {
+            log.debug("No user found for email: {}", loginRequestDTO.getEmail());
+            log.error("User not found");
+            throw new EmailNotFoundException();
+        }
+        LoginResponseDTO responseDTO = userMapper.loginResponseDTO(userOpt.get());
+        if (!passwordService.matches(loginRequestDTO.getPassword(), userOpt.get().getPassword())) {
+            log.error("Password doesn't matches");
+            throw new PasswordNotMatchesException();
+        }
+        return responseDTO;
     }
 }

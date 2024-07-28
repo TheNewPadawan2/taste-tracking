@@ -37,6 +37,6 @@ public class LoginControllerImpl implements LoginController {
 			LoginRequestDTO login)
 			throws EmailNotFoundException, PasswordNotMatchesException {
 		LoginResponseDTO payload = loginService.login(login);
-		return new ResponseEntity<LoginResponseDTO>(payload, HttpStatus.OK);
+		return new ResponseEntity<>(payload, HttpStatus.OK);
 	}
 }
