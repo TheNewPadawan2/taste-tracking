@@ -23,7 +23,7 @@ public class LoginControllerAdvice {
                         .code("LOG-C001")
                         .message("The mail address was already assigned to another user")
                         .build(),
-                HttpStatus.OK);
+                HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(value = {
@@ -39,6 +39,6 @@ public class LoginControllerAdvice {
                         .code("LOG-R001")
                         .message("Email or Password wrong")
                         .build(),
-                HttpStatus.OK);
+                HttpStatus.BAD_REQUEST);
     }
 }
