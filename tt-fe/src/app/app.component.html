@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar #toolbar color="primary">
   <mat-toolbar-row>
     <button mat-icon-button
             aria-label="Example icon-button with menu icon"
@@ -15,7 +15,7 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-sidenav-container class="sidenav-height" autosize>
+<mat-sidenav-container *ngIf="heightMinusToolbar" [ngStyle]="{ 'height': heightMinusToolbar}">
   <mat-sidenav mode="over" [(opened)]="sidenavOpened">
     <mat-nav-list>
       <mat-list-item routerLink="/login">

@@ -1,11 +1,21 @@
-<mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input type="email" matInput placeholder="Ex. pat@example.com" [(ngModel)]="loginRequest.email">
-</mat-form-field>
-<mat-form-field class="example-form-field">
-    <mat-label>Clearable input</mat-label>
-    <input matInput type="{{passwordHidden ? 'password' : 'text'}}" [(ngModel)]="loginRequest.password">
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="passwordHidden=!passwordHidden">
-        <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-</mat-form-field>
+<mat-card appearance="raised">
+    <mat-card-title class="center-text">LOGIN</mat-card-title>
+    <mat-card-content>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Ex. pat@example.com" [(ngModel)]="loginRequest.email">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="{{passwordHidden ? 'password' : 'text'}}" [(ngModel)]="loginRequest.password">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="passwordHidden=!passwordHidden">
+                <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-flat-button
+                color="primary"
+                (click)="login()">LOGIN</button>
+    </mat-card-actions>
+</mat-card>
