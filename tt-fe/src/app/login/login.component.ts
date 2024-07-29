@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginRequest } from '../login-request';
+import { LoginRequest } from '../_dto/login-request';
 
 @Component({
   selector: 'app-login',
