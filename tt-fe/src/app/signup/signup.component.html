@@ -1,0 +1,42 @@
+<mat-card appearance="raised">
+    <mat-card-title class="center-text">LOGIN</mat-card-title>
+    <mat-card-content>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Firstname</mat-label>
+            <input type="text" matInput placeholder="John" [(ngModel)]="signupRequest.firstname">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Lastname</mat-label>
+            <input type="text" matInput placeholder="Smith" [(ngModel)]="signupRequest.lastname">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Birthday</mat-label>
+            <input type="date" matInput [(ngModel)]="signupRequest.birthday">
+            <!--<mat-datepicker #picker></mat-datepicker>-->
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>TaxId</mat-label>
+            <input type="text" matInput placeholder="GELDOT85T24T752H" [(ngModel)]="signupRequest.taxId">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>PhoneNumber</mat-label>
+            <input type="text" matInput placeholder="3388445566" [(ngModel)]="signupRequest.phoneNumber">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="johnsmith@example.it" [(ngModel)]="signupRequest.email">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="{{passwordHidden ? 'password' : 'text'}}" [(ngModel)]="signupRequest.password">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="passwordHidden=!passwordHidden">
+                <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-flat-button
+                color="primary"
+                (click)="signup()">SIGNUP</button>
+    </mat-card-actions>
+</mat-card>

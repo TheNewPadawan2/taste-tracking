@@ -17,11 +17,7 @@
 </mat-toolbar>
 <mat-sidenav-container *ngIf="heightMinusToolbar" [ngStyle]="{ 'height': heightMinusToolbar}">
   <mat-sidenav mode="over" [(opened)]="sidenavOpened">
-    <mat-nav-list>
-      <mat-list-item routerLink="/login">
-        LOGIN
-      </mat-list-item>
-    </mat-nav-list>
+    <app-sidenav-content></app-sidenav-content>
   </mat-sidenav>
   <div id="router-container">
     <router-outlet></router-outlet>
