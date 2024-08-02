@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { LoginRequest } from '../_dto/login-request';
-import { LoginService } from '../_service/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router } from'@angular/router';
+import { LoginRequest } from '../_dto/login-request';
 import { LoginResponse } from '../_dto/login-response';
+import { LoginService } from '../_service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,9 @@ export class LoginComponent {
   passwordHidden: boolean = true;
   loginRequest: LoginRequest = {};
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+          private loginService: LoginService,
+          private router: Router) {}
 
   login(): void {
     this.loginService.login(this.loginRequest).subscribe({
@@ -24,7 +27,9 @@ export class LoginComponent {
         console.error(res.status);
         console.error(res.error);
       },
-      complete: (): void => {}
+      complete: (): void => {
+        this.router.navigate(['/']);
+      }
     })
   }
 }

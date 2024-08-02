@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { SignupRequest } from '../_dto/signup-request';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router } from'@angular/router';
+import { SignupRequest } from '../_dto/signup-request';
 import { LoginService } from '../_service/login.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class SignupComponent {
   passwordHidden: boolean = true;
   signupRequest: SignupRequest = {};
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+          private loginService: LoginService,
+          private router: Router) {}
 
   signup(): void {
     this.loginService.signup(this.signupRequest).subscribe({
@@ -23,7 +26,9 @@ export class SignupComponent {
         console.error(res.status);
         console.error(res.error);
       },
-      complete: (): void => {}
+      complete: (): void => {
+        this.router.navigate(['/']);
+      }
     })
   }
 }
