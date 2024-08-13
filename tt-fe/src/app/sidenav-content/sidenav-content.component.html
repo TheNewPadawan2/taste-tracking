@@ -1,11 +1,18 @@
 <mat-nav-list>
-    <mat-list-item *ngIf="loginService.loggedAs === undefined" routerLink="/login">
-        LOGIN
-    </mat-list-item>
-    <mat-list-item *ngIf="loginService.loggedAs === undefined" routerLink="/signup">
-        SIGNUP
-    </mat-list-item>
-    <mat-list-item *ngIf="loginService.loggedAs !== undefined" routerLink="/login">
-        LOGOUT
-    </mat-list-item>
+    <ng-container *ngIf="loginService.loggedAs === undefined">
+        <mat-list-item routerLink="/login">
+            LOGIN
+        </mat-list-item>
+        <mat-list-item routerLink="/signup">
+            SIGNUP
+        </mat-list-item>
+    </ng-container>
+    <ng-container *ngIf="loginService.loggedAs !== undefined">
+        <mat-list-item routerLink="/product">
+            PRODUCT
+        </mat-list-item>
+        <mat-list-item routerLink="/login">
+            LOGOUT
+        </mat-list-item>
+    </ng-container>
 </mat-nav-list>
