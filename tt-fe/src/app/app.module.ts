@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,13 +22,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SidenavContentComponent } from './sidenav-content/sidenav-content.component';
 import { SignupComponent } from './signup/signup.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidenavContentComponent,
-    SignupComponent
+    SignupComponent,
+    ProductComponent
   ],
   imports: [
     AppRoutingModule,
@@ -43,6 +46,7 @@ import { SignupComponent } from './signup/signup.component';
     MatInputModule,
     MatListModule,
     MatNativeDateModule,
+    MatSelectModule,
     MatSidenavModule,
     MatTableModule,
     MatToolbarModule
