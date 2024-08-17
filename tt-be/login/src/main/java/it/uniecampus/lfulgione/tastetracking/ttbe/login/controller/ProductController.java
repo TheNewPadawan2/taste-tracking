@@ -11,7 +11,7 @@ public interface ProductController {
 
     @PostMapping(path = "/create")
     ResponseEntity<Void> create(
-            @RequestBody Object product);
+            @RequestBody ProductDTO product);
 
     @GetMapping
     ResponseEntity<List<ProductDTO>> search(
