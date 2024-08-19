@@ -10,7 +10,6 @@ import it.uniecampus.lfulgione.tastetracking.ttbe.login.mapper.UserMapper;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.repository.UserRepository;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.LoginService;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.PasswordService;
-import jakarta.validation.constraints.Email;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

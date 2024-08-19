@@ -9,10 +9,10 @@ import lombok.Setter;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,4 +58,7 @@ public class UserEntity {
 
     @Column(name = "creation_date")
     private Timestamp creationDate = new Timestamp(System.currentTimeMillis());
+
+    @Column(name = "delete_date")
+    private Timestamp deleteDate = null;
 }
