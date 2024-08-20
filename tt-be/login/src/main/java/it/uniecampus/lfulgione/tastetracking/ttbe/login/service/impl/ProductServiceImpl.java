@@ -5,10 +5,9 @@ import it.uniecampus.lfulgione.tastetracking.ttbe.login.entity.ProductEntity;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.mapper.ProductMapper;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.repository.ProductRepository;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.ProductService;
-import jdk.jshell.spi.ExecutionControl;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void create(ProductDTO productDTO) {
         log.info("START PRODUCT.create");
+        productDTO.setName(productDTO.getName().toUpperCase().trim());
         ProductEntity productEntity = productMapper.entity(productDTO);
         log.info("{}", productEntity);
         productRepository.save(productEntity);
@@ -30,10 +30,26 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @SneakyThrows
     public List<ProductDTO> search(String name, Integer type) {
         log.info("START PRODUCT.search");
-        throw new ExecutionControl.NotImplementedException("Product search method");
-//        log.info("END PRODUCT.search");
+        List<ProductEntity> productEntities;
+        if (Strings.isBlank(name)) {
+            if (type != null) {
+                productEntities = productRepository.findByTypeAndDeleteDateIsNull(type);
+            } else {
+                productEntities = productRepository.findByDeleteDateIsNull();
+            }
+        } else {
+            name = name.trim();
+            if (type != null) {
+                productEntities = productRepository.findByNameContainsIgnoreCaseAndTypeAndDeleteDateIsNull(name, type);
+            } else {
+                productEntities = productRepository.findByNameContainsIgnoreCaseAndDeleteDateIsNull(name);
+            }
+        }
+        log.info("Entities:\n{}", productEntities);
+        List<ProductDTO> dtos = productMapper.dto(productEntities);
+        log.info("END PRODUCT.search");
+        return dtos;
     }
 }
