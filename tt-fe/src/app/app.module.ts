@@ -20,17 +20,19 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { ProductComponent } from './product/product.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { SidenavContentComponent } from './sidenav-content/sidenav-content.component';
 import { SignupComponent } from './signup/signup.component';
-import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ProductComponent,
+    ProductDialogComponent,
     SidenavContentComponent,
-    SignupComponent,
-    ProductComponent
+    SignupComponent
   ],
   imports: [
     AppRoutingModule,
