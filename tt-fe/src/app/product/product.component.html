@@ -26,17 +26,21 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<div><button mat-flat-button
-                color="primary"
-                (click)="create()">CREATE</button>
-</div><br>
-<mat-divider></mat-divider><br>
-<mat-form-field>
+<div>
+  <button mat-flat-button
+          color="primary"
+          (click)="create()">CREATE</button>
+</div>
+<br>
+<ng-container *ngIf="ELEMENT_DATA">
+  <mat-divider></mat-divider>
+  <br>
+  <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
   
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource!" class="mat-elevation-z8">
   
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -58,4 +62,5 @@
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
   </table>
+</ng-container>
   

@@ -13,4 +13,8 @@ export class ProductService {
   create(product: Product): Observable<null> {
     return this.http.post<null>('http://localhost:8081/product/create', product);
   }
+
+  search(): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:8081/product');
+  } 
 }
