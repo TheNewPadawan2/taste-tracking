@@ -5,6 +5,8 @@ import { KeyValue } from '../_dto/key-value';
 import { Product } from '../_dto/product';
 import { PRODUCT_TYPES } from '../_mock/mock-product-type';
 import { ProductService } from '../_service/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -20,7 +22,8 @@ export class ProductComponent implements OnInit {
   dataSource?: MatTableDataSource<Product>;
 
   constructor(
-          private productService: ProductService) {
+          private productService: ProductService,
+          private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -31,7 +34,7 @@ export class ProductComponent implements OnInit {
     if (this.dataSource !== undefined) {
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();
-    }  
+    }
   }
 
   create(): void {
@@ -81,4 +84,15 @@ export class ProductComponent implements OnInit {
       }
     });
   }
+
+  openDialog(product: Product) {
+    console.log("openDialog invoked");
+    console.log(product);
+    const dialogRef = this.dialog.open(ProductDialogComponent);
+
+    /*dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    }); */
+  }
+
 }
