@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
-    List<ProductEntity> findByDeleteDateIsNull();
-    List<ProductEntity> findByNameContainsIgnoreCaseAndDeleteDateIsNull(String name);
-    List<ProductEntity> findByTypeAndDeleteDateIsNull(Integer type);
-    List<ProductEntity> findByNameContainsIgnoreCaseAndTypeAndDeleteDateIsNull(String name, Integer type);
+    List<ProductEntity> findByDeleteDateIsNullOrderByNameAsc();
+    List<ProductEntity> findByNameContainsIgnoreCaseAndDeleteDateIsNullOrderByNameAsc(String name);
+    List<ProductEntity> findByTypeAndDeleteDateIsNullOrderByNameAsc(Integer type);
+    List<ProductEntity> findByNameContainsIgnoreCaseAndTypeAndDeleteDateIsNullOrderByNameAsc(String name, Integer type);
 }

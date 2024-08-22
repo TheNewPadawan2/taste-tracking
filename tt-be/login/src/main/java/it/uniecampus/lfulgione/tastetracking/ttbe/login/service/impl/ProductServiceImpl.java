@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void create(ProductDTO productDTO) {
         log.info("START PRODUCT.create");
-        productDTO.setName(productDTO.getName().toUpperCase().trim());
+        productDTO.setName(productDTO.getName().toLowerCase().trim());
         ProductEntity productEntity = productMapper.entity(productDTO);
         log.info("{}", productEntity);
         productRepository.save(productEntity);
@@ -35,16 +35,16 @@ public class ProductServiceImpl implements ProductService {
         List<ProductEntity> productEntities;
         if (Strings.isBlank(name)) {
             if (type != null) {
-                productEntities = productRepository.findByTypeAndDeleteDateIsNull(type);
+                productEntities = productRepository.findByTypeAndDeleteDateIsNullOrderByNameAsc(type);
             } else {
-                productEntities = productRepository.findByDeleteDateIsNull();
+                productEntities = productRepository.findByDeleteDateIsNullOrderByNameAsc();
             }
         } else {
             name = name.trim();
             if (type != null) {
-                productEntities = productRepository.findByNameContainsIgnoreCaseAndTypeAndDeleteDateIsNull(name, type);
+                productEntities = productRepository.findByNameContainsIgnoreCaseAndTypeAndDeleteDateIsNullOrderByNameAsc(name, type);
             } else {
-                productEntities = productRepository.findByNameContainsIgnoreCaseAndDeleteDateIsNull(name);
+                productEntities = productRepository.findByNameContainsIgnoreCaseAndDeleteDateIsNullOrderByNameAsc(name);
             }
         }
         log.info("Entities:\n{}", productEntities);
