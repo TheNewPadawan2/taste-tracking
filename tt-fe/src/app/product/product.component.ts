@@ -5,7 +5,7 @@ import { KeyValue } from '../_dto/key-value';
 import { Product } from '../_dto/product';
 import { PRODUCT_TYPES } from '../_mock/mock-product-type';
 import { ProductService } from '../_service/product.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 
 @Component({
@@ -88,7 +88,12 @@ export class ProductComponent implements OnInit {
   openDialog(product: Product) {
     console.log("openDialog invoked");
     console.log(product);
-    const dialogRef = this.dialog.open(ProductDialogComponent);
+    const dialogConfig: MatDialogConfig<Product> = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = product;
+    const dialogRef = this.dialog.open(ProductDialogComponent, dialogConfig);
 
     /*dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
