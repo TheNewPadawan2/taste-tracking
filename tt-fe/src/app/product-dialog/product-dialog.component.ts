@@ -14,12 +14,7 @@ export class ProductDialogComponent {
   productUpdated: Product;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: Product) {
-    this.product = { name: data.name, type: data.type };
-    PRODUCT_TYPES.forEach((kv: KeyValue) => {
-      if (data.type.toString().toLowerCase() === kv.key.toLowerCase()) {
-        this.product.type = kv.value;
-      }
-    });
+    this.product = data;
     this.productUpdated = { name: this.product.name, type: this.product.type };
   }
 

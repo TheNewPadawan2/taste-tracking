@@ -1,4 +1,5 @@
 export interface Product {
     name: string;
-    type: number | string;
+    type: string;
+    typeReadable?: string;
 }

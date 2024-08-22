@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   productTypes: KeyValue[] = PRODUCT_TYPES;
   ELEMENT_DATA?: Product[];
   name?: string;
-  type?: number;
+  type?: string;
   displayedColumns: string[] = [ 'name', 'type' ];
   dataSource?: MatTableDataSource<Product>;
 
@@ -62,10 +62,14 @@ export class ProductComponent implements OnInit {
     this.productService.search().subscribe({
       next: (value: Product[]): void => {
         value.forEach((data: Product) => {
-          if (typeof data.type === 'number') {
-            const type: string | undefined = this.productTypes[data.type].key;
-            data.type = type !== undefined ? type : '';
+          let type: string | number | undefined;
+          for (let i = 0; i < this.productTypes.length; i++) {
+            if (this.productTypes[i].key === data.type) {
+              type = this.productTypes[i].value;
+              break;
+            }
           }
+          data.typeReadable = type !== undefined && typeof type === 'string' ? type : data.type;
         });
         //TODO: riempitre data source
         if(this.ELEMENT_DATA === undefined) {
