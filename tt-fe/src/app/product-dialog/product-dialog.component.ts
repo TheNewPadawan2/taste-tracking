@@ -10,6 +10,7 @@ import { KeyValue } from '../_dto/key-value';
   styleUrl: './product-dialog.component.css'
 })
 export class ProductDialogComponent {
+  readonly productTypes: KeyValue[] = PRODUCT_TYPES;
   product: Product;
   productUpdated: Product;
 

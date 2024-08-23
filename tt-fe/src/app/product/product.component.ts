@@ -14,7 +14,7 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
-  productTypes: KeyValue[] = PRODUCT_TYPES;
+  readonly productTypes: KeyValue[] = PRODUCT_TYPES;
   ELEMENT_DATA?: Product[];
   name?: string;
   type?: string;
@@ -97,6 +97,7 @@ export class ProductComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.data = product;
+    dialogConfig.width = '40vw';
     const dialogRef = this.dialog.open(ProductDialogComponent, dialogConfig);
 
     /*dialogRef.afterClosed().subscribe(result => {
