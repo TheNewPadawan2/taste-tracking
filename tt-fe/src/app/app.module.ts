@@ -25,6 +25,7 @@ import { ProductComponent } from './product/product.component';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { SidenavContentComponent } from './sidenav-content/sidenav-content.component';
 import { SignupComponent } from './signup/signup.component';
+import { PairSequenceMatchPipe } from './_pipe/pair-sequence-match.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SignupComponent } from './signup/signup.component';
     ProductComponent,
     ProductDialogComponent,
     SidenavContentComponent,
-    SignupComponent
+    SignupComponent,
+    PairSequenceMatchPipe
   ],
   imports: [
     AppRoutingModule,
