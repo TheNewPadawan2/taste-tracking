@@ -17,6 +17,7 @@
 <mat-dialog-actions>
     <button mat-flat-button
             color="primary"
+            (click)="update()"
             [disabled]="product.name | pairSequenceMatch: productUpdated.name: product.type: productUpdated.type">UPDATE</button>
     <button mat-flat-button
             color="warn">DELETE</button>
