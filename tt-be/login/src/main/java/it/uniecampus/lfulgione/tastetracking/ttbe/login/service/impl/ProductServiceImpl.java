@@ -1,6 +1,7 @@
 package it.uniecampus.lfulgione.tastetracking.ttbe.login.service.impl;
 
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductDTO;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductUpdateDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.entity.ProductEntity;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.mapper.ProductMapper;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.repository.ProductRepository;
@@ -51,5 +52,12 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDTO> dtos = productMapper.dto(productEntities);
         log.info("END PRODUCT.search");
         return dtos;
+    }
+
+    @Override
+    public void update(ProductUpdateDTO productUpdateDTO) {
+        log.info("START PRODUCT.update");
+        //TODO
+        log.info("END PRODUCT.update");
     }
 }

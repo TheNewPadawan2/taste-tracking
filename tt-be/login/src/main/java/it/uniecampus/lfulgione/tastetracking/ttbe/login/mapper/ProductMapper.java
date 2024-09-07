@@ -20,7 +20,7 @@ public interface ProductMapper {
     ProductEntity entity(ProductDTO dto);
 
     default List<ProductDTO> dto(List<ProductEntity> entities) {
-        if (entities == null) return null;
+        if (entities == null) return new ArrayList<>();
         List<ProductDTO> dtos = new ArrayList<>(entities.size());
         for (ProductEntity entity : entities) dtos.add(dto(entity));
         return dtos;

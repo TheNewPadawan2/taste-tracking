@@ -1,6 +1,7 @@
 package it.uniecampus.lfulgione.tastetracking.ttbe.login.controller;
 
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductDTO;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductUpdateDTO;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
@@ -19,4 +20,8 @@ public interface ProductController {
     ResponseEntity<List<ProductDTO>> search(
             @RequestParam(name = "name", required = false) @Nullable String name,
             @RequestParam(name = "type", required = false) @Nullable Integer type);
+
+    @PutMapping
+    ResponseEntity<List<ProductDTO>> update(
+            @RequestBody @NotNull ProductUpdateDTO productUpdateDTO);
 }
