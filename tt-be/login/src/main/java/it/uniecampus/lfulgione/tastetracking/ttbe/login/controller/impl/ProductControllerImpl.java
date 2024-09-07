@@ -3,6 +3,7 @@ package it.uniecampus.lfulgione.tastetracking.ttbe.login.controller.impl;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.controller.ProductController;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductUpdateDTO;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.exception.ProductNotFoundException;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,8 +34,10 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @Override
-    public ResponseEntity<List<ProductDTO>> update(ProductUpdateDTO productUpdateDTO) {
-        productService.update(productUpdateDTO);
-        return null;
+    public ResponseEntity<ProductDTO> update(
+            ProductUpdateDTO productUpdateDTO)
+            throws ProductNotFoundException {
+        ProductDTO dto = productService.update(productUpdateDTO);
+        return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
     }
 }

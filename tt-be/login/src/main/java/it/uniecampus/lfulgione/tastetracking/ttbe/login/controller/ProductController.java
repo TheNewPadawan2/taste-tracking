@@ -2,6 +2,7 @@ package it.uniecampus.lfulgione.tastetracking.ttbe.login.controller;
 
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductUpdateDTO;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.exception.ProductNotFoundException;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public interface ProductController {
             @RequestParam(name = "type", required = false) @Nullable Integer type);
 
     @PutMapping
-    ResponseEntity<List<ProductDTO>> update(
-            @RequestBody @NotNull ProductUpdateDTO productUpdateDTO);
+    ResponseEntity<ProductDTO> update(
+            @RequestBody @NotNull ProductUpdateDTO productUpdateDTO)
+            throws ProductNotFoundException;
 }

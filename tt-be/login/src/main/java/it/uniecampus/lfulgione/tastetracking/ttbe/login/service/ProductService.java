@@ -2,6 +2,7 @@ package it.uniecampus.lfulgione.tastetracking.ttbe.login.service;
 
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductUpdateDTO;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.exception.ProductNotFoundException;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,6 +15,7 @@ public interface ProductService {
     List<ProductDTO> search(
             @Nullable String name,
             @Nullable Integer type);
-    void update(
-            @NotNull ProductUpdateDTO productUpdateDTO);
+    ProductDTO update(
+            @NotNull ProductUpdateDTO productUpdateDTO)
+            throws ProductNotFoundException;
 }

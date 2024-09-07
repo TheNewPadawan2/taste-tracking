@@ -3,6 +3,7 @@ package it.uniecampus.lfulgione.tastetracking.ttbe.login.service.impl;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.dto.ProductUpdateDTO;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.entity.ProductEntity;
+import it.uniecampus.lfulgione.tastetracking.ttbe.login.exception.ProductNotFoundException;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.mapper.ProductMapper;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.repository.ProductRepository;
 import it.uniecampus.lfulgione.tastetracking.ttbe.login.service.ProductService;
@@ -12,6 +13,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -55,9 +57,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void update(ProductUpdateDTO productUpdateDTO) {
+    public ProductDTO update(ProductUpdateDTO productUpdateDTO) throws ProductNotFoundException {
         log.info("START PRODUCT.update");
-        //TODO
+        Optional<ProductEntity> productEntityOld;
+        productEntityOld = productRepository.findOneByNameIgnoreCase(productUpdateDTO.getOld().getName());
+        if(productEntityOld.isEmpty()) throw new ProductNotFoundException();
+        productUpdateDTO.getUpdated().setName(productUpdateDTO.getUpdated().getName().toLowerCase().trim());
+        ProductEntity productEntity = productMapper.entity(productUpdateDTO.getUpdated());
+        ProductEntity updating = productEntityOld.get(); //NOSONAR
+        updating.setName(productEntity.getName());
+        updating.setType(productEntity.getType());
+        ProductDTO dto = productMapper.dto(productRepository.save(updating));
         log.info("END PRODUCT.update");
+        return dto;
     }
 }
