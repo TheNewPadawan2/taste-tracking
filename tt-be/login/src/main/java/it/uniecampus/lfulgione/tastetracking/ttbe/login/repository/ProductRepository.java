@@ -13,5 +13,5 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
     List<ProductEntity> findByNameContainsIgnoreCaseAndDeleteDateIsNullOrderByNameAsc(String name);
     List<ProductEntity> findByTypeAndDeleteDateIsNullOrderByNameAsc(Integer type);
     List<ProductEntity> findByNameContainsIgnoreCaseAndTypeAndDeleteDateIsNullOrderByNameAsc(String name, Integer type);
-    Optional<ProductEntity> findOneByName(String name);
+    Optional<ProductEntity> findOneByNameIgnoreCase(String name);
 }
