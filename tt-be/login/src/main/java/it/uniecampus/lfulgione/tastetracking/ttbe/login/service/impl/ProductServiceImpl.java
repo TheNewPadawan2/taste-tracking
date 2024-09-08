@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,7 +58,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO update(ProductUpdateDTO productUpdateDTO) throws ProductNotFoundException {
+    public ProductDTO update(
+            ProductUpdateDTO productUpdateDTO)
+            throws ProductNotFoundException {
         log.info("START PRODUCT.update");
         Optional<ProductEntity> productEntityOld;
         productEntityOld = productRepository.findOneByNameIgnoreCase(productUpdateDTO.getOld().getName());
@@ -73,9 +76,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void logicalDelete(String name) {
+    public void logicalDelete(
+            String name)
+            throws ProductNotFoundException {
         log.info("START PRODUCT.logicalDelete");
-        log.info("nome: {}", name);
+        Optional<ProductEntity> productEntityOpt;
+        productEntityOpt = productRepository.findOneByNameIgnoreCase(name);
+        if (productEntityOpt.isEmpty()) throw new ProductNotFoundException();
+        ProductEntity productEntity = productEntityOpt.get(); //NOSONAR
+        if (productEntity.getDeleteDate() != null) {
+            productEntity.setDeleteDate(new Timestamp(System.currentTimeMillis()));
+        }
+        productRepository.save(productEntity);
         log.info("END PRODUCT.logicalDelete");
     }
 }

@@ -42,7 +42,9 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @Override
-    public ResponseEntity<Void> logicalDelete(String name) {
+    public ResponseEntity<Void> logicalDelete(
+            String name)
+            throws ProductNotFoundException {
         productService.logicalDelete(name);
         return new ResponseEntity<>(HttpStatus.OK);
     }

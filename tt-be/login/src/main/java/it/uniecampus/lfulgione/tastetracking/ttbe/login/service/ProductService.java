@@ -20,5 +20,6 @@ public interface ProductService {
             throws ProductNotFoundException;
 
     void logicalDelete(
-            @NotNull String name);
+            @NotNull String name)
+            throws ProductNotFoundException;
 }

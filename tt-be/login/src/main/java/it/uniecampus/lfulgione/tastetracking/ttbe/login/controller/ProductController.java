@@ -29,5 +29,6 @@ public interface ProductController {
 
     @DeleteMapping(path = "/{name}")
     ResponseEntity<Void> logicalDelete(
-            @PathVariable(name = "name") @NotNull String name);
+            @PathVariable(name = "name") @NotNull String name)
+            throws ProductNotFoundException;
 }
