@@ -29,13 +29,21 @@ public class ProductServiceImpl implements ProductService {
         productDTO.setName(productDTO.getName().toLowerCase().trim());
         ProductEntity productEntity = productMapper.entity(productDTO);
         log.info("{}", productEntity);
-        ProductEntity entity = null;
         try {
-            entity = productRepository.save(productEntity);
+            productRepository.save(productEntity);
         } catch (Exception ex) {
-            //TODO already exists (may be cancelled)
+            Optional<ProductEntity> productEntityOpt = productRepository.findOneByNameIgnoreCase(productDTO.getName());
+            if (productEntityOpt.isPresent()) {
+                productEntityOpt.get().setType(productEntity.getType());
+                productEntity = productEntityOpt.get();
+                productEntity.setDeleteDate(null);
+                productRepository.save(productEntity);
+            } else {
+                log.error("", ex);
+                throw ex;
+            }
         }
-        ProductDTO dto = productMapper.dto(entity);
+        ProductDTO dto = productMapper.dto(productEntity);
         log.info("END PRODUCT.create");
         return dto;
     }
