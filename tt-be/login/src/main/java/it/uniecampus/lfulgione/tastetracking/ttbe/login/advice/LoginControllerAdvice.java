@@ -31,9 +31,6 @@ public class LoginControllerAdvice {
             PasswordNotMatchesException.class})
     private ResponseEntity<ErrorDTO> passwordEmailMissmatch() {
         log.error("Email or Password wrong");
-        //1) Junior = "non capisco un cazzo"
-        //2) Middle = "Non so a che serve, però le variabili fanno scopa ed il metodo mi fa capire che vole quest'oggetto qua"
-        //3) Senior = "Si ma perché faccio questo?"
         return new ResponseEntity<>(
                 ErrorDTO.builder()
                         .code("LOG-R001")
