@@ -41,17 +41,23 @@ export class ProductComponent implements OnInit {
     if (this.name !== undefined && this.type !== undefined) {
       const product: Product = { name: this.name, type: this.type };
       this.productService.create(product).subscribe({
-        next: (): void => {
-          console.log("success");
+        next: (value: Product): void => {
+          let type: string | number | undefined;
+          for (let i = 0; i < this.productTypes.length; i++) {
+            if (this.productTypes[i].key === value.type) {
+              type = this.productTypes[i].value;
+              break;
+            }
+          }
+          value.typeReadable = type !== undefined && typeof type === 'string' ? type : value.type;
+          this.ELEMENT_DATA = [value].concat(this.ELEMENT_DATA!);
         },
         error: (res: HttpErrorResponse): void => {
           console.error(res.status);
           console.error(res.error);
         },
         complete: (): void => {
-          console.log("complete");
-          // product.type = typeof product.type === 'number' ? this.productTypes[product.type].key : '';
-          // this.ELEMENT_DATA.push(product);
+          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         }
       });
     }

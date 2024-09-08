@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
         productEntityOpt = productRepository.findOneByNameIgnoreCase(name);
         if (productEntityOpt.isEmpty()) throw new ProductNotFoundException();
         ProductEntity productEntity = productEntityOpt.get(); //NOSONAR
-        if (productEntity.getDeleteDate() != null) {
+        if (productEntity.getDeleteDate() == null) {
             productEntity.setDeleteDate(new Timestamp(System.currentTimeMillis()));
         }
         productRepository.save(productEntity);

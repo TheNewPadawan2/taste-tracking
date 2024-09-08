@@ -11,9 +11,9 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  create(product: Product): Observable<null> {
+  create(product: Product): Observable<Product> {
     const productSend: Product = { name: product.name, type: product.type };
-    return this.http.post<null>('http://localhost:8081/product/create', productSend);
+    return this.http.post<Product>('http://localhost:8081/product/create', productSend);
   }
 
   search(): Observable<Product[]> {
