@@ -40,4 +40,10 @@ public class ProductControllerImpl implements ProductController {
         ProductDTO dto = productService.update(productUpdateDTO);
         return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
     }
+
+    @Override
+    public ResponseEntity<Void> logicalDelete(String name) {
+        productService.logicalDelete(name);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

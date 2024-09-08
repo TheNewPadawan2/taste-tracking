@@ -18,4 +18,7 @@ public interface ProductService {
     ProductDTO update(
             @NotNull ProductUpdateDTO productUpdateDTO)
             throws ProductNotFoundException;
+
+    void logicalDelete(
+            @NotNull String name);
 }

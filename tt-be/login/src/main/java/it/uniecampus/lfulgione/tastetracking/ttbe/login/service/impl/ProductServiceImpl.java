@@ -71,4 +71,11 @@ public class ProductServiceImpl implements ProductService {
         log.info("END PRODUCT.update");
         return dto;
     }
+
+    @Override
+    public void logicalDelete(String name) {
+        log.info("START PRODUCT.logicalDelete");
+        log.info("nome: {}", name);
+        log.info("END PRODUCT.logicalDelete");
+    }
 }

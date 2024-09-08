@@ -26,4 +26,8 @@ public interface ProductController {
     ResponseEntity<ProductDTO> update(
             @RequestBody @NotNull ProductUpdateDTO productUpdateDTO)
             throws ProductNotFoundException;
+
+    @DeleteMapping(path = "/{name}")
+    ResponseEntity<Void> logicalDelete(
+            @PathVariable(name = "name") @NotNull String name);
 }
