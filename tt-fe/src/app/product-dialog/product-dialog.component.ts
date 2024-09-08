@@ -42,7 +42,7 @@ export class ProductDialogComponent {
           this.product.typeReadable = type !== undefined && typeof type === 'string' ? type : this.product.type;
       },
       error: (res: HttpErrorResponse): void => {
-        this.errorMessage = res.status === 0 ? 'Il sistema è offline' : res.message;
+        this.errorMessage = res.status === 0 || res.error.message === undefined ? 'Il sistema è offline' : res.error.message;
         this.processing = false;
       },
       complete: (): void => {
