@@ -2,23 +2,29 @@
 <mat-dialog-content style="width: 100%;">
     <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>Name</mat-label>
-        <input type="text" matInput [(ngModel)]="productUpdated.name">
+        <input type="text"
+               matInput
+               [(ngModel)]="productUpdated.name"
+               [disabled]="processing">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>Type</mat-label>
-      <mat-select [(ngModel)]="productUpdated.type" name="food type">
+      <mat-select [(ngModel)]="productUpdated.type"
+                  name="food type"
+                  [disabled]="processing">
         <mat-option *ngFor="let type of productTypes" [value]="type.key">
           {{ type.value }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-flat-button
             color="primary"
             (click)="update()"
-            [disabled]="product.name | pairSequenceMatch: productUpdated.name: product.type: productUpdated.type">UPDATE</button>
+            [disabled]="processing || (product.name | pairSequenceMatch: productUpdated.name: product.type: productUpdated.type)">UPDATE</button>
     <button mat-flat-button
             color="warn">DELETE</button>
 </mat-dialog-actions>
