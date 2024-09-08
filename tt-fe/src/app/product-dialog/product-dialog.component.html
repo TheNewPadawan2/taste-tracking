@@ -26,5 +26,7 @@
             (click)="update()"
             [disabled]="processing || (product.name | pairSequenceMatch: productUpdated.name: product.type: productUpdated.type)">UPDATE</button>
     <button mat-flat-button
-            color="warn">DELETE</button>
+            color="warn"
+            (click)="delete()"
+            [disabled]="processing">DELETE</button>
 </mat-dialog-actions>

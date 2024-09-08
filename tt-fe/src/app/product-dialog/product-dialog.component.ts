@@ -33,13 +33,13 @@ export class ProductDialogComponent {
         this.product.name = value.name;
         this.product.type = value.type;
         let type: string | number | undefined;
-          for (let i = 0; i < this.productTypes.length; i++) {
-            if (this.productTypes[i].key === this.product.type) {
-              type = this.productTypes[i].value;
-              break;
-            }
+        for (let i = 0; i < this.productTypes.length; i++) {
+          if (this.productTypes[i].key === this.product.type) {
+            type = this.productTypes[i].value;
+            break;
           }
-          this.product.typeReadable = type !== undefined && typeof type === 'string' ? type : this.product.type;
+        }
+        this.product.typeReadable = type !== undefined && typeof type === 'string' ? type : this.product.type;
       },
       error: (res: HttpErrorResponse): void => {
         this.errorMessage = res.status === 0 || res.error.message === undefined ? 'Il sistema è offline' : res.error.message;
@@ -53,4 +53,21 @@ export class ProductDialogComponent {
     });
   }
 
+  delete(): void {
+    this.processing = true;
+    this.productService.delete(this.product.name).subscribe({
+      next: (): void => {
+        console.log('success');
+      },
+      error: (res: HttpErrorResponse): void => {
+        console.log(res);
+        this.processing = false;
+      },
+      complete: (): void => {
+        this.errorMessage = undefined;
+        this.dialogRef.close();
+        this.processing = false;
+      }
+    })
+  }
 }

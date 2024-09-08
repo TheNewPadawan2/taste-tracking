@@ -23,5 +23,9 @@ export class ProductService {
   update(productOld: Product, productUpdated: Product): Observable<Product> {
     const dto: productUpdateRequest = { old: productOld, updated: productUpdated };
     return this.http.put<Product>('http://localhost:8081/product', dto);
-  }  
+  }
+
+  delete(name: string): Observable<null> {
+    return this.http.delete<null>('http://localhost:8081/product/' + name.toLowerCase().trim());
+  }
 }
