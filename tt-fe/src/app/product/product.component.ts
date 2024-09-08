@@ -98,11 +98,14 @@ export class ProductComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = product;
     dialogConfig.width = '40vw';
-    const dialogRef = this.dialog.open(ProductDialogComponent, dialogConfig);
-
-    /*dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    }); */
+    const dialogRef = this.dialog.open(ProductDialogComponent, dialogConfig).afterClosed().subscribe({
+      complete: (): void => {
+        this.ELEMENT_DATA = this.ELEMENT_DATA?.filter((value: Product): boolean => {
+          return value.deleted === undefined || !value.deleted;
+        });
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+      }
+    });
   }
 
 }

@@ -57,10 +57,11 @@ export class ProductDialogComponent {
     this.processing = true;
     this.productService.delete(this.product.name).subscribe({
       next: (): void => {
-        console.log('success');
+        this.product.deleted = true;
       },
       error: (res: HttpErrorResponse): void => {
-        console.log(res);
+        this.product.deleted = undefined;
+        this.errorMessage = res.status === 0 || res.error.message === undefined ? 'Il sistema è offline' : res.error.message;
         this.processing = false;
       },
       complete: (): void => {
