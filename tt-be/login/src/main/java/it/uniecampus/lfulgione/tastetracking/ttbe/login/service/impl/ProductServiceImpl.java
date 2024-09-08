@@ -24,13 +24,20 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public void create(ProductDTO productDTO) {
+    public ProductDTO create(ProductDTO productDTO) {
         log.info("START PRODUCT.create");
         productDTO.setName(productDTO.getName().toLowerCase().trim());
         ProductEntity productEntity = productMapper.entity(productDTO);
         log.info("{}", productEntity);
-        productRepository.save(productEntity);
+        ProductEntity entity = null;
+        try {
+            entity = productRepository.save(productEntity);
+        } catch (Exception ex) {
+            //TODO already exists (may be cancelled)
+        }
+        ProductDTO dto = productMapper.dto(entity);
         log.info("END PRODUCT.create");
+        return dto;
     }
 
     @Override

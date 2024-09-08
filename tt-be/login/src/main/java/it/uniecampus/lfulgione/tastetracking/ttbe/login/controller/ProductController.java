@@ -14,7 +14,7 @@ import java.util.List;
 public interface ProductController {
 
     @PostMapping(path = "/create")
-    ResponseEntity<Void> create(
+    ResponseEntity<ProductDTO> create(
             @RequestBody @NotNull ProductDTO product);
 
     @GetMapping

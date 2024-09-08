@@ -22,9 +22,9 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @Override
-    public ResponseEntity<Void> create(ProductDTO product) {
-        productService.create(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<ProductDTO> create(ProductDTO product) {
+        ProductDTO dto = productService.create(product);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
     @Override

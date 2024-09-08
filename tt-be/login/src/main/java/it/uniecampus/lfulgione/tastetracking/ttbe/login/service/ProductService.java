@@ -9,7 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public interface ProductService {
-    void create(
+    @NotNull
+    ProductDTO create(
             @NotNull ProductDTO productDTO);
     @NotNull
     List<ProductDTO> search(
